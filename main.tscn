@@ -1,5 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://fwkogftsi30s"]
+[gd_scene load_steps=10 format=3 uid="uid://fwkogftsi30s"]
 
+[ext_resource type="Script" path="res://main.gd" id="1_023qc"]
 [ext_resource type="Texture2D" uid="uid://blj8mctgv46ds" path="res://assets/sheet.png" id="1_035ry"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i6bjb"]
@@ -39,10 +40,13 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
-"speed": 5.0
+"speed": 1.0
 }]
 
+[sub_resource type="AudioStreamMicrophone" id="AudioStreamMicrophone_jms5n"]
+
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_023qc")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
@@ -53,4 +57,7 @@ region_enabled = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(100, 100)
 sprite_frames = SubResource("SpriteFrames_p1dtp")
-autoplay = "default"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamMicrophone_jms5n")
+bus = &"Mic"
