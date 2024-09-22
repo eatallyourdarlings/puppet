@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://fwkogftsi30s"]
+[gd_scene load_steps=14 format=3 uid="uid://fwkogftsi30s"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_023qc"]
 [ext_resource type="Texture2D" uid="uid://blj8mctgv46ds" path="res://assets/sheet.png" id="1_035ry"]
 [ext_resource type="Script" path="res://show_spectrum.gd" id="3_cvs2p"]
 [ext_resource type="AudioStream" uid="uid://crw7qx41pr358" path="res://assets/hellomababy.mp3" id="3_n16va"]
+[ext_resource type="Script" path="res://impulse.gd" id="5_ion41"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i6bjb"]
 atlas = ExtResource("1_035ry")
@@ -74,7 +75,7 @@ autoplay = true
 position = Vector2(-50, 0)
 script = ExtResource("3_cvs2p")
 
-[node name="Magnitude" type="Label" parent="ShowSpectrum"]
+[node name="Label" type="Label" parent="ShowSpectrum"]
 visible = false
 anchors_preset = 7
 anchor_left = 0.5
@@ -87,10 +88,23 @@ offset_right = 42.0
 offset_bottom = 83.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "magnitude"
+text = "test"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ShowSpectrum"]
 visible = false
 shape = SubResource("RectangleShape2D_fyjad")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Impulse" type="Node" parent="."]
+script = ExtResource("5_ion41")
+
+[node name="Label" type="Label" parent="Impulse"]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Label2" type="Label" parent="Impulse"]
+offset_left = 1.0
+offset_top = 24.0
+offset_right = 41.0
+offset_bottom = 47.0

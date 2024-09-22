@@ -1,6 +1,6 @@
 extends Node2D
 
-const VU_COUNT = 4
+const VU_COUNT = 16
 const FREQ_MAX = 11050.0
 
 @export var WIDTH = 100
@@ -12,7 +12,7 @@ var min_values = []
 var max_values = []
 
 @onready var spectrum : AudioEffectSpectrumAnalyzerInstance = AudioServer.get_bus_effect_instance(0, 0)
-@onready var magnitude_label : Label = $Magnitude
+@onready var label : Label = $Label
 
 func _ready():
 	min_values.resize(VU_COUNT)
@@ -66,6 +66,9 @@ func _process(_delta):
 		data.append(height)
 		prev_hz = hz
 
+	# display the index of the highest value
+	label.set_text(str(data.find(data.max())))
+	
 	for i in range(VU_COUNT):
 		if data[i] > max_values[i]:
 			max_values[i] = data[i]
