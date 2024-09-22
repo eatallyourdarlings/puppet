@@ -14,7 +14,7 @@ config/name="puppet"
 run/main_scene="res://main.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 boot_splash/show_image=false
-config/icon="res://icon.svg"
+config/icon="res://assets/bayer-skull.png"
 
 [audio]
 
@@ -22,10 +22,11 @@ driver/enable_input=true
 
 [display]
 
-window/size/viewport_width=200
-window/size/viewport_height=200
+window/size/viewport_width=400
+window/size/viewport_height=400
 window/size/initial_position_type=0
 window/stretch/mode="canvas_items"
+window/vsync/vsync_mode=0
 
 [rendering]
 

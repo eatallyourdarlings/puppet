@@ -1,11 +1,10 @@
 extends Node2D
 
-const VU_COUNT = 16
+const VU_COUNT = 4
 const FREQ_MAX = 11050.0
 
-const WIDTH = 800
-const HEIGHT = 250
-const HEIGHT_SCALE = 8.0
+@export var WIDTH = 100
+@export var HEIGHT = 160
 const MIN_DB = 60
 const ANIMATION_SPEED = 0.1
 
@@ -23,6 +22,7 @@ func _ready():
 
 func _draw():
 	var w = WIDTH / VU_COUNT
+	#draw_rect(Rect2(0, 0, WIDTH, HEIGHT), Color.DARK_OLIVE_GREEN, false)
 	for i in range(VU_COUNT):
 		var min_height = min_values[i]
 		var max_height = max_values[i]
@@ -62,9 +62,7 @@ func _process(_delta):
 		var hz = i * FREQ_MAX / VU_COUNT
 		var magnitude = spectrum.get_magnitude_for_frequency_range(prev_hz, hz).length()
 		var energy = clampf((MIN_DB + linear_to_db(magnitude)) / MIN_DB, 0, 1)
-		var height = energy * HEIGHT * HEIGHT_SCALE
-		#if i == VU_COUNT:
-			#magnitude_label.set_text(str(magnitude))
+		var height = energy * HEIGHT
 		data.append(height)
 		prev_hz = hz
 
