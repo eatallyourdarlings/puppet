@@ -1,10 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://fwkogftsi30s"]
+[gd_scene load_steps=14 format=3 uid="uid://fwkogftsi30s"]
 
-[ext_resource type="Script" path="res://main.gd" id="1_023qc"]
 [ext_resource type="Texture2D" uid="uid://blj8mctgv46ds" path="res://assets/sheet.png" id="1_035ry"]
 [ext_resource type="Shader" path="res://sprite.gdshader" id="2_i6sow"]
-[ext_resource type="Script" path="res://show_spectrum.gd" id="3_cvs2p"]
 [ext_resource type="AudioStream" uid="uid://crw7qx41pr358" path="res://assets/hellomababy.mp3" id="3_n16va"]
+[ext_resource type="PackedScene" uid="uid://bpsxwgub1qgd4" path="res://show_spectrum.tscn" id="4_b4y1p"]
 [ext_resource type="Script" path="res://impulse.gd" id="5_ion41"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6el0v"]
@@ -55,10 +54,8 @@ animations = [{
 
 [sub_resource type="AudioStreamMicrophone" id="AudioStreamMicrophone_jms5n"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fyjad"]
-
 [node name="Main" type="Node2D"]
-script = ExtResource("1_023qc")
+script = ExtResource("5_ion41")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_6el0v")
@@ -77,40 +74,18 @@ stream = SubResource("AudioStreamMicrophone_jms5n")
 stream = ExtResource("3_n16va")
 autoplay = true
 
-[node name="ShowSpectrum" type="Node2D" parent="."]
-position = Vector2(-50, 0)
-script = ExtResource("3_cvs2p")
-
-[node name="Label" type="Label" parent="ShowSpectrum"]
-visible = false
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -42.0
-offset_top = 60.0
-offset_right = 42.0
-offset_bottom = 83.0
-grow_horizontal = 2
-grow_vertical = 0
-text = "test"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ShowSpectrum"]
-visible = false
-shape = SubResource("RectangleShape2D_fyjad")
-
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="Impulse" type="Node" parent="."]
-script = ExtResource("5_ion41")
+[node name="Impulse" type="Node2D" parent="."]
 
-[node name="Label" type="Label" parent="Impulse"]
+[node name="Label" type="Label" parent="."]
 offset_right = 40.0
 offset_bottom = 23.0
 
-[node name="Label2" type="Label" parent="Impulse"]
+[node name="Label2" type="Label" parent="."]
 offset_left = 1.0
 offset_top = 24.0
 offset_right = 41.0
 offset_bottom = 47.0
+
+[node name="ShowSpectrum" parent="." instance=ExtResource("4_b4y1p")]

@@ -12,6 +12,8 @@ var min_values = []
 var max_values = []
 
 @onready var spectrum : AudioEffectSpectrumAnalyzerInstance = AudioServer.get_bus_effect_instance(0, 0)
+
+@export var debug := false
 @onready var label : Label = $Label
 
 func _ready():
@@ -22,7 +24,7 @@ func _ready():
 
 func _draw():
 	var w = WIDTH / VU_COUNT
-	#draw_rect(Rect2(0, 0, WIDTH, HEIGHT), Color.DARK_OLIVE_GREEN, false)
+	draw_rect(Rect2(0, 0, WIDTH, HEIGHT), Color.DARK_OLIVE_GREEN, false)
 	for i in range(VU_COUNT):
 		var min_height = min_values[i]
 		var max_height = max_values[i]
@@ -67,7 +69,8 @@ func _process(_delta):
 		prev_hz = hz
 
 	# display the index of the highest value
-	label.set_text(str(data.find(data.max())))
+	if debug:
+		label.set_text(str(data.find(data.max())))
 	
 	for i in range(VU_COUNT):
 		if data[i] > max_values[i]:
