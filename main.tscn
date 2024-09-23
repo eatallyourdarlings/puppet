@@ -1,14 +1,21 @@
-[gd_scene load_steps=14 format=3 uid="uid://fwkogftsi30s"]
+[gd_scene load_steps=16 format=3 uid="uid://fwkogftsi30s"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_023qc"]
 [ext_resource type="Texture2D" uid="uid://blj8mctgv46ds" path="res://assets/sheet.png" id="1_035ry"]
+[ext_resource type="Shader" path="res://sprite.gdshader" id="2_i6sow"]
 [ext_resource type="Script" path="res://show_spectrum.gd" id="3_cvs2p"]
 [ext_resource type="AudioStream" uid="uid://crw7qx41pr358" path="res://assets/hellomababy.mp3" id="3_n16va"]
 [ext_resource type="Script" path="res://impulse.gd" id="5_ion41"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6el0v"]
+shader = ExtResource("2_i6sow")
+shader_parameter/index_x = 0
+shader_parameter/index_y = 0
+shader_parameter/frame_count = 4
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_i6bjb"]
 atlas = ExtResource("1_035ry")
-region = Rect2(0, 0, 800, 200)
+region = Rect2(0, 0, 200, 200)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n4d4x"]
 atlas = ExtResource("1_035ry")
@@ -54,10 +61,9 @@ animations = [{
 script = ExtResource("1_023qc")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
+material = SubResource("ShaderMaterial_6el0v")
 texture = SubResource("AtlasTexture_i6bjb")
-hframes = 4
-region_enabled = true
+region_rect = Rect2(0, 0, 200, 200)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 visible = false
